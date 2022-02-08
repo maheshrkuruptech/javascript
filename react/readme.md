@@ -1,43 +1,24 @@
-React
+#React
 
 
-React is a JS  library and gives a convenient way to manipulate DOM. 
-
-
-
-We could replace just plug-in the view layer (use it as a view library)  if its really needed. 
-
-
-
+React is a JS  library and gives a convenient way to manipulate DOM. We could replace just plug-in the view layer (use it as a view library)  if its really needed. 
 In general , React has a tendency to make us change the way we think about MVC Architecture. 
 
 
+DOM sends events to react  and fire events to components ; components are the view of the application. 
+Components can also replace the controller. Components are the class we write for the react.  
+Components send this to model layer. Its the section handles the business logic. It could be a simple class component or we could make it as a Redux or Flux or (yeah!! We have to bring in a model library)any such library calling server side APIs and get back the data and sets the state of the component.
 
-
-
-DOM sends events to react  and fire events to components ; components are the view of the application. Components can also replace the controller. Components are the class we write for the react.  Components send this to model layer. Its the section handles the business logic. It could be a simple class component or we could make it as a Redux or Flux or (yeah!! We have to bring in a model library)any such library calling server side APIs and get back the data and sets the state of the component.
-
-
-
-Once the state object gets updated , then the component gets re-rendered. 
-
-
-
-And then they gets updated to the shadow DOM; React library takes a diff and update/sync  only the changed element in the DOM. 
-
-
+Once the state object gets updated , then the component gets re-rendered. And then they gets updated to the shadow DOM; 
+React library takes a diff and update/sync  only the changed element in the DOM. 
 
 In this architecture  , components are meant to do little things efficiently adhering to SRP. 
-
-
 
 Shadow DOM is a hierarchy of objects React maintains , which will have both components and HTML elements. It’s a model of what we eventually want in the page. This hierarchy will help to ensure that the model is not directly accessible by the child components. It’s passed in by the parents. 
 
 
 
-All of these Virtual DOM / Shadow DOM everything is in the memory. 
-When a user action happens and the data changes  , the current component and all the child components will go for a re-render.  
-It results in a new  shadow DOM. Then react will merge in all the diff to real DOM. And the custom components will dis-appear. 
+All of these Virtual DOM / Shadow DOM everything is in the memory. When a user action happens and the data changes  , the current component and all the child components will go for a re-render.  It results in a new  shadow DOM. Then react will merge in all the diff to real DOM. And the custom components will dis-appear. 
 Merging is real performant and avoid the need to do DOM manipulation. 
 
 But its always possible to do direct control , but thinking in REACT way will make it redundant. 
@@ -146,10 +127,7 @@ Stateless Components will be the view and Stateful components can be used to rep
 
 
 
-React uses  ES2015 / ES 2016 , class like syntax and also created JSX. 
-Idea of JSX is to use HTML like syntax in react. 
-
-This needs a transpiler for web application to understand , hence Babel
+React uses  ES2015 / ES 2016 , class like syntax and also created JSX. Idea of JSX is to use HTML like syntax in react. This needs a transpiler for web application to understand , hence Babel.
 
 
 
