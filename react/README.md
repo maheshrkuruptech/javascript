@@ -101,11 +101,32 @@ Events are abstrataion over browser events. React events are synthetic events.
 
 ## Stateless Component
 Doesnt have a state. So it accepts certain props and only render;still they can handle events. 
-
 Stateless Components will be the view and Stateful components can be used to represent the model. 
+They are PURE components by definition.
+
+Always add a key to the list elements so that React knows which element to update. 
 
 
+### Handle events / state in stateless component from stateful component. 
+Say Shadow DOM is in stateless component and not in the stateful. This can be managed by 
+creating a function in the stateful component and then pass it as a delegate. 
+Then on any event on stateless function , the passed in function can be used. 
+(It creates a closure) and any action will trigger the function passed in, 
+which is owned by the parent stateful component.
 
+If the stateless component is a list of checkbox or so , then the idea approach to do setState is 
+in an immutable manner. 
+
+```
+__setStatus(listItem , changedData) {
+ const {listData} = this.state;
+ const newList = listData.map(old => {
+     if (old.id != listItem.id)
+            return old;
+    return Object.assign({} , old , {element : changedData})
+});
+this.setState({listData : newList});
+```
 ## Build Process
 
 A JavaScript build toolchain typically consists of:
