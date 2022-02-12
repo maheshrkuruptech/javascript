@@ -100,12 +100,14 @@ Events are abstrataion over browser events. React events are synthetic events.
 
 
 ## Stateless Component
-Doesnt have a state. So it accepts certain props and only render;still they can handle events. 
-Stateless Components will be the view and Stateful components can be used to represent the model. 
+Its a function takes in prop and render shadow DOM.Doesnt have a state. So it accepts certain props and only render;still they can handle events. Stateless Components will be the view and Stateful components can be used to represent the model. 
 They are PURE components by definition.
-
 Always add a key to the list elements so that React knows which element to update. 
-
+```
+function TodoList(props) {
+    return (<ul><li></li></ul>);
+}
+```
 
 ### Handle events / state in stateless component from stateful component. 
 Say Shadow DOM is in stateless component and not in the stateful. This can be managed by 
@@ -118,6 +120,16 @@ If the stateless component is a list of checkbox or so , then the idea approach 
 in an immutable manner. 
 
 ```
+function StatelessComponent({prpName}) {
+    return (
+        <test onclick = {e => prpName(element, e.trget.checked)}}>
+    )
+}
+<StatelessComponent prpName = {this.__setStatus}>
+
+</StatelessComponent>
+
+
 __setStatus(listItem , changedData) {
  const {listData} = this.state;
  const newList = listData.map(old => {
@@ -127,6 +139,40 @@ __setStatus(listItem , changedData) {
 });
 this.setState({listData : newList});
 ```
+
+
+### How to reach out to DOM element from React. 
+    When filling forms , react should reachout to HTML and get the value. v
+    Proper way to get the reference to actual DOM element is to use ref element and then use a closure.
+    This should happen in the render .
+    ```
+    {input => this.__methodName  = input} ; 
+
+    onSubmit {
+        const me = this.__methodName.value;
+    }
+    ```
+    Another use case is say to bring focus on a text field on page load. 
+    ```
+    <Component>
+      focusInput() {
+          this.__text.focus();
+      }
+    </Component>
+    <Component ref = {form => this__Component = form}/>
+
+    componentDidMount() {
+        this.Component.focusInput();
+    }
+    ```
+### PropTypes 
+Way to validate props , mention mandatory vs Optional. 
+```
+Components.propTypes = {
+    onABC : React.propType.func.isRequired
+}
+```    
+
 ## Build Process
 
 A JavaScript build toolchain typically consists of:
